@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Calculator</title>
+</head>
+<style>
+.container
+{
+
+height: 11rem;
+display: grid;
+height: 8cm;
+max-inline-size: 32rem;
+border-radius: 10px; 
+justify-content: center;
+align-items: center;
+box-shadow: 12px 12px 12px 12px rgb(182, 119, 119);
+margin:auto;
+} 
+</style>
+<body>
+<div class="container">
+    <h3 align="center"> CURRENCY CONVERTOR</h3>
+    <form>
+        
+        <input id="amount" type="number" />
+        <select id="primary" class="input">
+            <option value="IND">IND</option>
+            <option value="USD">USD</option>
+            <option value="UK">UK</option>
+        </select>
+        <select id="secondary" class="input">
+            <option value="IND">IND</option>
+            <option value="USD">USD</option>
+            <option value="UK">UK</option>
+        </select> 
+
+        <button id="convertbt" onclick="result1(event)">Convert</button>
+
+        </button>
+      </form>
+      
+    <p id="result">
+    <span class="fresult"></span>
+    </p>
+    </div>
+    <script>
+        var crrncy = {'UK': {'IND': 0.009, 'USD': 1.24}, 'USD': {'IND': 80, 'UK': 0.80},'IND': {'USD': 0.01, 'UK': 102}}
+        var amountInput = document.querySelector("#amount");
+        var value;
+        var result=0;
+
+
+        amountInput.addEventListener('change',(event)=>{
+            value = `${event.target.value}`;
+        });
+
+        function result1(event)
+        {    
+            event.preventDefault();
+            var baseCurrencyInput = document.getElementById('primary').value;
+            var secondCurrencyInput = document.getElementById('secondary').value;
+            console.log(baseCurrencyInput)
+            console.log(secondCurrencyInput)
+            if (baseCurrencyInput == secondCurrencyInput)
+            {
+                result = amountInput.value;
+            }
+            else 
+            {
+               result = amountInput.value * crrncy[baseCurrencyInput][secondCurrencyInput];
+            }
+            console.log(result)
+            document.querySelector('.fresult').innerHTML = result;         
+        }
+    </script>
+    <body>
+</html>
